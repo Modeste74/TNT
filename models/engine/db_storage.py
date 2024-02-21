@@ -15,16 +15,16 @@ class DBStorage:
     __engine = None
     __session = None
 
-    def __init__(self):
-        USER = getenv('TNT_MYSQL_USER')
-        PWD = getenv('TNT_MYSQL_PWD')
-        HOST = getenv('TNT_MYSQL_HOST')
-        DB = getenv('TNT_MYSQL_DB')
-        ENV = getenv('TNT_ENV')
-        self.__engine = create_engine(
-            f'mysql+mysqldb://{USER}:{PWD}@{HOST}/{DB}')
-        if ENV == 'test':
-            Base.metadata.drop_all(self.__engine)
+    # def __init__(self):
+    #     USER = getenv('TNT_MYSQL_USER')
+    #     PWD = getenv('TNT_MYSQL_PWD')
+    #     HOST = getenv('TNT_MYSQL_HOST')
+    #     DB = getenv('TNT_MYSQL_DB')
+    #     ENV = getenv('TNT_ENV')
+    #     self.__engine = create_engine(
+    #         f'mysql+mysqldb://{USER}:{PWD}@{HOST}/{DB}')
+    #     if ENV == 'test':
+    #         Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         new_dict = {}

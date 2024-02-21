@@ -13,6 +13,7 @@ class Topic(db.Model):
         return self.name
 
 class Hub(db.Model):
+    """Representation of the hub class"""
     id = db.Column(db.Integer, primary_key=True)
     host_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     topic_id = db.Column(db.Integer, db.ForeignKey('topic.id'), nullable=True)
@@ -28,6 +29,7 @@ class Hub(db.Model):
         return self.name
 
 class Message(db.Model):
+    """Message Representation"""
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     room_id = db.Column(db.Integer, db.ForeignKey('room.id'), nullable=False)
@@ -36,12 +38,13 @@ class Message(db.Model):
     created = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     user = db.relationship('User', back_populates='messages')
-    room = db.relationship('Room', back_populates='messages')
+    room = db.relationship('Hub', back_populates='messages')
 
     def __repr__(self):
         return self.body[:50]
 
 class User(db.Model):
+    """User Representation"""
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
