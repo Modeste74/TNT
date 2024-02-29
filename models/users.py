@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """defines a class Users"""
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Enum
 from sqlalchemy.orm import relationship
 from hashlib import md5
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,6 +14,7 @@ class Users(BaseModel, Base):
     id = Column(String(60), primary_key=True)
     password = Column(String(500), nullable=False)
     username = Column(String(128), nullable=False)
+    user_type = Column(Enum('tutor', 'learner'), nullable=False)
 
     def __init__(self, *args, **kwargs):
     	"""initializes user"""
