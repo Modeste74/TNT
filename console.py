@@ -7,9 +7,16 @@ import models
 from models.base_model import BaseModel
 from models.messages import Message
 from models.users import Users
+from models.hub import Hub, HubLearners
+from models.resource import Resource
+from models.chat import Chat
+from models.group import Group
+from models.group_members import GroupMember
 import shlex  # for splitting the line along spaces except in double quotes
 
-classes = {"Users": Users, "BaseModel": BaseModel, "Message": Message}
+classes = {"Users": Users, "BaseModel": BaseModel, "Message": Message,
+        "Hub": Hub, "Resource": Resource, "Chat": Chat, "Group": Group,
+        "HubLearners": HubLearners, "GroupMember": GroupMember}
 
 
 class DEPCommand(cmd.Cmd):
