@@ -2,7 +2,7 @@
 """defines a class Message"""
 import models
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import Column, String, ForeignKey, LargeBinary
 from sqlalchemy.orm import relationship
 
 
@@ -12,7 +12,9 @@ class Message(BaseModel, Base):
     id = Column(String(128), primary_key=True)
     sender_id = Column(String(128), ForeignKey('users.id'), nullable=False)
     receiver_id = Column(String(128), ForeignKey('users.id'), nullable=False)
-    message = Column(String(1024), nullable=False)
+    message = Column(String(1024))
+    image = Column(LargeBinary)
+    video = Column(LargeBinary)
 
     def __init__(self, *args, **kwargs):
         """initialzes messages"""

@@ -4,11 +4,18 @@ import models
 from models.base_model import BaseModel, Base
 from models.messages import Message
 from models.users import Users
+from models.hub import Hub
+from models.resource import Resource
+from models.chat import Chat
+from models.group import Group
+from models.group_members import GroupMember
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from os import getenv
 
-classes = {"Users": Users, "Message": Message}
+classes = {"Users": Users, "Message": Message, "Hub": Hub,
+        "Resource": Resource, "Chat": Chat, "Group": Group,
+        "GroupMember": GroupMember}
 
 
 class DBStorage:
@@ -29,7 +36,7 @@ class DBStorage:
     def all(self, cls=None):
     	new_dict = {}
     	for clss in classes:
-    		if cls is None or cls in classes[clss] or cls is clss:
+    		if cls is None or cls is classes[clss] or cls is clss:
     			objs = self.__session.query(classes[clss]).all()
     			for obj in objs:
     				key = obj.__class__.__name__ + '.' + str(obj.id)
