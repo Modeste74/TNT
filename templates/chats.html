@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hub Chats</title>
+</head>
+<body>
+	<h1>Chats in Hub</h1>
+	<ul>
+		{% for chat in chats_hub %}
+		  <li>{{ chat.sender.username }}: {{ chat.message }}</li>
+		{% endfor %}
+	</ul>
+	<p><a href="{{ url_for('hub.hub_display', hub_id=hub.id) }}">Back to Hub</a></p>
+</body>
+</html>

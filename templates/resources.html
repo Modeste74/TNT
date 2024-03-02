@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hub Resources</title>
+</head>
+<body>
+	<h1>Hub Resources</h1>
+	<ul>
+		{% for resource in resources %}
+		<li>
+			<strong>Content:</strong> {{ resource.content }}<br>
+		</li>
+		{% endfor %}
+	</ul>
+	<p><a href="{{ url_for('hub.hub_display', hub_id=hub.id) }}">Back to Hub</a></p>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    <h1>Chat Room</h1>
+
+    <!-- Form for sending messages -->
+    <form id="messageForm" action="{{ url_for('chat.create_chat', hub_id=hub.id, sender_id=current_user.id) }}" method="POST">
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <br>
+        <button type="submit" onclick="sendMessage()">Send Message</button>
+    </form>
+
+    <!-- Display area for received messages -->
+    <div id="messageDisplay">
+        {% for message in messages %}
+            <p>{{ message.sender.username }}: {{ message.message }}</p>
+        {% endfor %}
+    </div>
+
+    <script>
+        function sendMessage() {
+            // Your AJAX code to send a message and update the display goes here
+            // Example using fetch:
+            fetch('/create_chat/{{ hub.id }}', {
+                method: 'POST',
+                body: new FormData(document.getElementById('messageForm')),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error(data.error);
+                } else {
+                    // Update the message display
+                    const messageDisplay = document.getElementById('messageDisplay');
+                    messageDisplay.innerHTML += `<p>${data.message}</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Resource</title>
+</head>
+<body>
+    <h1>Create Resource</h1>
+    
+    <form action="{{ url_for('resource.create_resource', hub_id=hub.id) }}" method="POST">
+        <label for="content">Content:</label>
+        <textarea name="content" id="content" rows="4" cols="50"></textarea><br>
+
+        <input type="submit" value="Create Resource">
+    </form>
+
+    <h2>Resources</h2>
+    {% for hub in hubs %}
+        <h3>{{ hub.name }}</h3>
+        <ul>
+            {% for resource in hub.resources %}
+                <li>{{ resource.content }} | <form method="post" action="{{ url_for('resource.delete_resource', resource_id=resource.id) }}"><button type="submit">Delete</button></form></li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</body>
+</html>

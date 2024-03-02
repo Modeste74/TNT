@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TNT</title>
+</head>
+<body>
+    <h1>Welcome to {{ hub.name }}</h1>
+    <p><a href="{{ url_for('user.home') }}">Home</a></p>
+    <p><a href="{{ url_for('resource.create_resource', hub_id=hub.id) }}">Create Resource</a></p>
+    <p><a href="{{ url_for('chat.create_chat', hub_id=hub.id, sender_id=current_user.id) }}">Create Chat</a></p>
+    <p><a href="{{ url_for('group.create_group', hub_id=hub.id) }}">Create Group</a></p>
+    <h3>Hub Groups</h3>
+    <ul>
+        {% if current_user.user_type == 'tutor' %}
+          {% for group in groups %}
+            {% if group.hub_id == hub.id %}
+              <li>
+                <a href="{{ url_for('hub.groups', hub_id=group.hub_id) }}">{{ group.name }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        {% endif %}    
+    </ul>
+    <p><a href="{{ url_for('hub.resources',hub_id=hub.id) }}">Resources</a></p>
+    <p><a href="{{ url_for('hub.chats',hub_id=hub.id) }}">Chats</a></p>
+    <p><a href="{{ url_for('hub.groups',hub_id=hub.id) }}">Group Chat</a></p>
+</body>
+</html>
