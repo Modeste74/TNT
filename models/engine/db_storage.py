@@ -4,18 +4,19 @@ import models
 from models.base_model import BaseModel, Base
 from models.messages import Message
 from models.users import Users
-from models.hub import Hub
+from models.hub import Hub, HubLearners
 from models.resource import Resource
 from models.chat import Chat
-from models.group import Group
+from models.group import Group, GroupMessage
 from models.group_members import GroupMember
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from os import getenv
 
 classes = {"Users": Users, "Message": Message, "Hub": Hub,
-        "Resource": Resource, "Chat": Chat, "Group": Group,
-        "GroupMember": GroupMember}
+        "HubLearners": HubLearners, "Resource": Resource,
+        "Chat": Chat, "Group": Group, "GroupMember": GroupMember,
+        "GroupMessage": GroupMessage}
 
 
 class DBStorage:
