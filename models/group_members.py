@@ -12,5 +12,5 @@ class GroupMember(BaseModel, Base):
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     group_id = Column(String(60), ForeignKey('groups.id'), nullable=False)
 
-    user = relationship("User", foreign_keys=[user_id])
+    user = relationship("Users", foreign_keys=[user_id])
     group = relationship("Group", back_populates="members")
