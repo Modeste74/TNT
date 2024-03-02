@@ -14,4 +14,4 @@ class Chat(BaseModel, Base):
     message = Column(String(1024), nullable=False)
 
     hub = relationship("Hub", back_populates="chats")
-    sender = relationship("User", foreign_keys=[sender_id])
+    sender = relationship("Users", foreign_keys=[sender_id])
