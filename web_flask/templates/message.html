@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messaging App</title>
+</head>
+<body>
+    <h1>Messaging App</h1>
+
+    <!-- Form for sending messages -->
+    <form id="messageForm">
+        <label for="recipient">Recipient:</label>
+        <input type="text" id="recipient" name="recipient" required>
+        <label for="sender">Sender:</label>
+        <input type="text" id="sender" name="sender" required>
+        <br>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <br>
+        <button type="button" onclick="sendMessage()">Send Message</button>
+    </form>
+
+    <!-- Display area for received messages -->
+    <div id="messageDisplay"></div>
+
+    <script>
+        function sendMessage() {
+            // Your AJAX code to send a message and update the display goes here
+            // Example using fetch:
+            fetch('/send_message', {
+                method: 'POST',
+                body: new FormData(document.getElementById('messageForm')),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error(data.error);
+                } else {
+                    // Update the message display
+                    const messageDisplay = document.getElementById('messageDisplay');
+                    messageDisplay.innerHTML += `<p>${data.message}</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
