@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """defines the app for our web application"""
 from flask import Flask
-from flask_socketio import SocketIO, emit
 from user import user_bp, login_manager
 from message import message_bp
 from hub import hub_bp
@@ -16,7 +15,6 @@ def create_app():
     necessary blueprint"""
     app = Flask(__name__)
     app.secret_key = os.getenv('FLASK_SECRET_KEY')
-    socketio = SocketIO(app)
 
     app.register_blueprint(user_bp)
     app.register_blueprint(message_bp)
@@ -26,9 +24,10 @@ def create_app():
     app.register_blueprint(group_bp)
 
     login_manager.init_app(app)
-    return app, socketio
+    return app
 
 
 if __name__ == '__main__':
-    app, socketio = create_app()
-    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
+    app = create_app()
+    app.run(host='0.0.0.0', port=5000, debug=True)
+
