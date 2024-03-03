@@ -5,38 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Messages</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
-
-    <script>
-        var socket = io.connect('http://' + document.domain + ':' + location.port);
-
-        // Function to handle sending messages
-        function sendMessage() {
-            var recipient_id = '{{ recipient_id }}';
-            var message_content = document.getElementById('message').value;
-
-            // Send a message to the server
-            socket.emit('message', {'sender_id': '{{ current_user.id }}', 'recipient_id': recipient_id, 'message': message_content});
-        }
-
-        // Function to handle receiving messages
-        socket.on('message', function(data) {
-            // Update your message display area with the received message
-            var messageDisplay = document.getElementById('messageDisplay');
-            messageDisplay.innerHTML += '<p>' + data.sender_id + ': ' + data.message + '</p>';
-        });
-    </script>
 </head>
 <body>
     <h1>Direct Messages</h1>
-    <div id="messageDisplay"></div>
 
-    <!-- Your existing form for sending messages -->
-    <form id="messageForm">
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
-        <br>
-        <button type="button" onclick="sendMessage()">Send Message</button>
-    </form>
+    <ul>
+        {% for message in messages %}
+            <li>
+                <strong>{{ message.sender.username }}:</strong> {{ message.message }}
+            </li>
+        {% endfor %}
+    </ul>
+    <p><a href="{{ url_for('user.home') }}">Home</a></p>
 </body>
 </html>
