@@ -1,12 +1,14 @@
+{% extends 'index.html' %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
+
+{%include 'index.html'%}
+
+
+{% block content %}
+
+<body class="Login-deets">
+      
     <h1>Login</h1>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -31,4 +33,5 @@
     <p>Don't have an account? <a href="{{ url_for('user.register') }}">Register New User</a></p>
     <p>Forgot your password? <a href="{{ url_for('user.forgot_password') }}">Reset Password</a></p>
 </body>
+{%endblock%}
 </html>
