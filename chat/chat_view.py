@@ -10,7 +10,7 @@ from models.users import Users
 
 
 @chat_bp.route('/create_chat/<hub_id>/<sender_id>', methods=['GET', 'POST'])
-def create_chat(hub_id, sender_id):
+def create_or_view_chat(hub_id, sender_id):
     if request.method == 'POST':
         message_content = request.form['message']
         
@@ -23,22 +23,14 @@ def create_chat(hub_id, sender_id):
                     message=message_content)
             storage.new(new_message)
             storage.save()
-            # return jsonify({"message": "Message sent successfully"})
-            return redirect(url_for('chat.view_messages', hub_id=hub_id))
+            return redirect(url_for('chat.create_or_view_chat', hub_id=hub_id, sender_id=sender_id))
         else:
             return jsonify({"error": "Hub or sender not found"})
+    
     hub = storage.get(Hub, hub_id)
-    return render_template('chat.html', hub=hub)
-
-
-@chat_bp.route('/view_messages/<hub_id>', methods=['GET'])
-def view_messages(hub_id):
     chats = storage.all(Chat).values()
-    chats_hub = []
-    for chat in chats:
-        if chat.hub_id == hub_id:
-            chats_hub.append(chat)
-    return render_template('chats.html', chats_hub=chats_hub)
+    chats_hub = [chat for chat in chats if chat.hub_id == hub_id]
+    return render_template('chat.html', chats_hub=chats_hub, hub=hub)
 
 
 @chat_bp.route('/delete_message/<message_id>', methods=['GET'])
