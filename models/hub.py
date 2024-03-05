@@ -13,11 +13,12 @@ class Hub(BaseModel, Base):
     participants = Column(Integer, default=1)
 
     tutor = relationship("Users", foreign_keys=[tutor_id])
-    resources = relationship("Resource", back_populates="hub")
-    chats = relationship("Chat", back_populates="hub")
-    groups = relationship("Group", back_populates="hub")
+    resources = relationship("Resource", back_populates="hub", cascade="all, delete-orphan")
+    chats = relationship("Chat", back_populates="hub", cascade="all, delete-orphan")
+    groups = relationship("Group", back_populates="hub", cascade="all, delete-orphan")
     learners = relationship("Users", secondary="hub_learners", back_populates="hubs", overlaps="hubs_association")
-    learners_association = relationship("HubLearners", back_populates="hub", overlaps="hubs,learners")
+    learners_association = relationship("HubLearners", back_populates="hub",
+            overlaps="hubs,learners", cascade="all, delete-orphan")
 
 
 class HubLearners(BaseModel, Base):
