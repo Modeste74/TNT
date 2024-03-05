@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub Resources</title>
+</head>
+<body>
+    <h1>Hub Resources</h1>
+
+    {% if current_user.user_type == 'tutor' %}
+        <!-- Create Resource Form -->
+        <form action="{{ url_for('hub.hub_resources', hub_id=hub.id) }}" method="POST">
+            <label for="content">Content:</label>
+            <textarea name="content" id="content" rows="4" cols="50"></textarea><br>
+            <input type="submit" value="Create Resource">
+        </form>
+    {% endif %}
+    
+    <!-- List of Resources -->
+    <ul>
+        {% for resource in resources %}
+            <li>{{ resource.content }}</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{{ url_for('hub.hub_display', hub_id=hub.id) }}">Back to Hub</a></p>
+</body>
+</html>

@@ -7,19 +7,20 @@
 </head>
 <body>
     <h1>Chat Room</h1>
+    <p><a href="{{ url_for('hub.hub_display', hub_id=hub.id) }}">Return to Hub</a></p>
 
     <!-- Form for sending messages -->
-    <form id="messageForm" action="{{ url_for('chat.create_chat', hub_id=hub.id, sender_id=current_user.id) }}" method="POST">
+    <form id="messageForm" action="{{ url_for('chat.create_or_view_chat', hub_id=hub.id, sender_id=current_user.id) }}" method="POST">
         <label for="message">Message:</label>
         <textarea id="message" name="message" required></textarea>
         <br>
-        <button type="submit" onclick="sendMessage()">Send Message</button>
+        <button type="submit">Send Message</button>
     </form>
 
     <!-- Display area for received messages -->
     <div id="messageDisplay">
-        {% for message in messages %}
-            <p>{{ message.sender.username }}: {{ message.message }}</p>
+        {% for chat in chats_hub %}
+            <p>{{ chat.sender.username }}: {{ chat.message }}</p>
         {% endfor %}
     </div>
 
