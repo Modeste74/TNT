@@ -18,55 +18,35 @@ def hub_display(hub_id):
     return render_template('hub_display.html', hub=hub, groups=groups)
 
 
-"""@app.route('/hub_features')
-def hub_features():"""
-
-@hub_bp.route('/resources/<hub_id>')
-def resources(hub_id):
+@hub_bp.route('/hub_resources/<hub_id>', methods=['GET', 'POST'])
+def hub_resources(hub_id):
     hub = storage.get(Hub, hub_id)
+    
+    if request.method == 'POST':
+        content = request.form.get('content')
+
+        if hub:
+            new_resource = Resource(hub_id=hub_id, content=content)
+            storage.new(new_resource)
+            storage.save()
+            flash("Resource created successfully", "success")
+            return redirect(url_for('hub.hub_resources', hub_id=hub_id))
+
     resources = storage.all(Resource).values()
-    resource_for_hub = []
-    for resource in resources: 
-        if resource.hub_id == hub_id:
-            resource_for_hub.append(resource)
-    return render_template('resources.html',
-        resources=resource_for_hub, hub=hub)
+    resource_for_hub = [resource for resource in resources if resource.hub_id == hub_id]
+    return render_template('hub_resources.html', resources=resource_for_hub, hub=hub)
 
 
-@hub_bp.route('/chats/<hub_id>')
-def chats(hub_id):
-    hub = storage.get(Hub, hub_id)
-    chats = storage.all(Chat).values()
-    chats_hub = []
-    for chat in chats:
-        if chat.hub_id == hub_id:
-            chats_hub.append(chat)
-    return render_template('chats.html', chats_hub=chats_hub, hub=hub)
-
-
-@hub_bp.route('/groups/<hub_id>')
-def groups(hub_id):
-    hub = storage.get(Hub, hub_id)
-    groups = storage.all(Group).values()
-    group_chats = []
-    for grp in groups:
-        if grp.hub_id == hub_id:
-            for member in grp.members:
-                if member.user_id == current_user.id:
-                    group_chats.append(grp)
-    return render_template('group_chat.html',
-        group_chats=group_chats, hub=hub)
-
-
-@hub_bp.route('/add_learner',
+@hub_bp.route('/add_learner/<hub_id>',
     methods=['GET', 'POST'], strict_slashes=False)
-def add_learner():
+def add_learner(hub_id):
     """Adds a learner to the hub"""
     if request.method == 'POST':
-        hub_id = request.form['hub_id']
-        learner_id = request.form['learner_id']
+        learner_name = request.form['learner_name']
         hub = storage.get(Hub, hub_id)
-        learner = storage.get(Users, learner_id)
+        learners = storage.all(Users).values()
+        learner = next((lnr for lnr in learners
+            if lnr.username == learner_name))
         
         if hub and learner:
             hub.learners.append(learner)
@@ -75,7 +55,8 @@ def add_learner():
         else:
             flash("Hub or learner not found", "error")
 
-    return render_template('add_learner.html')
+    return render_template('add_learner.html', hub_id=hub_id)
+
 
 @hub_bp.route('/create_hub/<tutor_id>',
     methods=['GET', 'POST'], strict_slashes=False)

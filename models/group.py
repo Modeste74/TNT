@@ -10,11 +10,11 @@ class Group(BaseModel, Base):
     __tablename__ = 'groups'
 
     hub_id = Column(String(60), ForeignKey('hubs.id'), nullable=False)
-    name = Column(String(128), nullable=False)
+    name = Column(String(128), unique= True, nullable=False)
 
     hub = relationship("Hub", back_populates="groups")
-    members = relationship("GroupMember", back_populates="group")
-    messages = relationship("GroupMessage", back_populates="group")
+    members = relationship("GroupMember", back_populates="group", cascade="all, delete-orphan")
+    messages = relationship("GroupMessage", back_populates="group", cascade="all, delete-orphan")
 
 
 class GroupMessage(BaseModel, Base):

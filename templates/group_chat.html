@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group Chat</title>
+    <!-- Add your head content here -->
 </head>
 <body>
-    <h1>Group Chat</h1>
+    <h1>Group Chat - {{ group.name }}</h1>
 
     <ul>
-        {% for grp in group_chats %}
-            <li>{{ grp.name }}</li>
+        {% for message in group_messages %}
+            <li>{{ message.sender.username }}: {{ message.content }}</li>
         {% endfor %}
     </ul>
 
-    <p><a href="{{ url_for('hub.hub_display', hub_id=hub.id) }}">Back to Hub</a></p>
+    <!-- Form for sending messages -->
+    <form action="{{ url_for('group.group_chat', group_id=group.id, sender_id=sender.id) }}" method="POST">
+        <label for="content">Message:</label>
+        <textarea name="content" id="content" required></textarea>
+        <br>
+        <button type="submit">Send Message</button>
+    </form>
+
+    <!-- Add other elements as needed -->
+
 </body>
 </html>
