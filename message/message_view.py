@@ -54,7 +54,7 @@ def user_chat(receiver_id):
                         (message.receiver_id == receiver_id and message.sender_id == current_user.id)
                     )
                 ]
-        direct_messages.extend(messages_between_users)
+            direct_messages.extend(messages_between_users)
         return render_template('view_messages.html', messages=direct_messages,
             recipient_id=receiver_id, current_user=current_user)
     else:
