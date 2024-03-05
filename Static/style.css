@@ -1,0 +1,15 @@
+/* login styling */
+.Login-deets
+{
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-abts
+{
+    background-color: darkgray;
+    min-width: 100%;
+    min-height: 100vh;
+}
