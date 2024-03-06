@@ -23,6 +23,6 @@
         <input type="text" name="username" required><br>
         <button type="submit">Add Participant</button>
     </form>
-    <p><a href="{{ url_for('hub.groups', group_id=group_id, hub_id=hub_id) }}">Back to group</a></p>
+    <p><a href="{{ url_for('group.group_chat', group_id=group_id, sender_id=current_user.id) }}">Back to group</a></p>
 </body>
 </html>
