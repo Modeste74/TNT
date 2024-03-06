@@ -20,7 +20,7 @@
             </ul>
         {% endif %}
     {% endwith %}
-        <label for="exampleInputEmail1" class="form-label">Username:</label>
+        <label for="username" class="form-label">Username:</label>
         <input type="text" class="form-control" id="username" name="username" required>
         <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Password:</label>
@@ -28,14 +28,14 @@
     </div>
     <div class="mb-3">
         <label for="user_type">User Type:</label>
-       <select class="form-select form-select-sm" aria-label="Small select example" required>
+       <select name="user_type" class="form-select form-select-sm" aria-label="Small select example" required>
             <option value="tutor">Tutor</option>
             <option value="learner">Learner</option>
         </select>
     </div>
         <button type="submit" class="btn btn-success" id="register">Register</button>
     </form>
-
+</article>
 </body>
 {%endblock%}
 </html>

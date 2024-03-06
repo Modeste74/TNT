@@ -1,20 +1,24 @@
+{%extends 'index.html'%}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Learner to Hub</title>
-</head>
+    {%include 'index.html'%}
+
+    {% block content %}
 <body>
-    <h1>Add Learner to Hub</h1>
+    <article class="login-abts">
+    <form method="POST" action="/add_learner" class="Login-deets">
+        <div class="mb-3">
+    <h1 class="login-header">Add Learner to Hub</h1>
 
     <!-- Form for adding learner -->
-    <form method="POST" action="/add_learner">
-        <label for="learner_name">Learner's Name:</label>
-        <input type="text" id="learner_name" name="learner_name" required>
-        <br>
-        <button type="submit">Add Learner</button>
-    </form>
-    <p><a href="{{ url_for('hub.hub_display', hub_id=hub_id) }}">Back to Hub</a></p>
+    <div class="mb-3">
+        <label for="learner_name"  class="form-label">Learner's Name:</label>
+        <input type="text" id="learner_name" name="learner_name" class="form-control" required>
+    </div>
+        <button type="submit" class="btn btn-success">Add Learner</button>
+</form>
+    <button class="btn btn-light"><a href="{{ url_for('hub.hub_display', hub_id=hub_id) }}">Back to Hub</a></button>
+</article>
 </body>
+{%endblock%}
 </html>
