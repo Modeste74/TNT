@@ -29,9 +29,13 @@
         {% elif current_user.user_type == 'learner' %}
           {% for group in groups %}
             {% if group.hub_id == hub.id %}
-                <li>
-                    <a href="{{ url_for('group.group_chat', group_id=group.id, sender_id=current_user.id) }}">{{ group.name }}</a>
-                </li>
+	    	{% for grp_m in group.members %}
+		    {% if grp_m.user_id == current_user.id %}
+                        <li>
+                            <a href="{{ url_for('group.group_chat', group_id=group.id, sender_id=current_user.id) }}">{{ group.name }}</a>
+                       </li>
+		    {% endif %}
+		{% endfor %}
             {% endif %}
           {% endfor %}
       {% endif %}  
