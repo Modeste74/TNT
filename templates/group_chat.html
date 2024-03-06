@@ -5,6 +5,9 @@
 </head>
 <body>
     <h1>Group Chat - {{ group.name }}</h1>
+    {% if current_user.user_tpe == 'tutor' %}
+    	<p><a href="{{ url_for('group.add_participant_to_group', group_id=group.id, hub_id=group.hub_id) }}">Add Participaant</a></p>
+    {% endif %}
 
     <ul>
         {% for message in group_messages %}
@@ -21,7 +24,7 @@
     </form>
 
     <!-- Add other elements as needed -->
-    <p><a href="{{ url_for('hub.hub_displaay', hub_id=group.hub_id)">Back to Hub</a></p>
+    <p><a href="{{ url_for('hub.hub_display', hub_id=group.hub_id) }}">Back to Hub</a></p>
 
 </body>
 </html>
