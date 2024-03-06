@@ -11,7 +11,7 @@
     <article class="login-abts">
     <form method="post" action="{{ url_for('user.login') }}" class="Login-deets">
         <div class="mb-3">
-            <h1>Login</h1>
+            <h1 class="login-header">Login</h1>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul>
@@ -23,16 +23,17 @@
         {% endwith %}
           <label for="exampleInputEmail1" class="form-label">Username: </label>
           <input type="text" class="form-control" id="username" name="username" required>
+          
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" class="form-control" id="password" name="password" required>
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
       </form>
-
+      
     <p>Don't have an account? <a href="{{ url_for('user.register') }}">Register New User</a></p>
     <p>Forgot your password? <a href="{{ url_for('user.forgot_password') }}">Reset Password</a></p>
-</body>
 </article>
+</body>
 {%endblock%}
 </html>
