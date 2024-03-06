@@ -31,9 +31,9 @@
               </li>
               <form class="container-fluid justify-content-start">
             {% if current_user.is_authenticated %}
-            <button type="button" class="btn btn-warning">@{{ current_user.username }} <a href=" {{ url_for('user.logout') }} "> Logout</a></button>
+            <button type="button" class="btn btn-light">@{{ current_user.username }} <a href=" {{ url_for('user.logout') }} "> Logout</a></button>
             {% else %}
-            <button type="button" class="btn btn-info"><a href="{{ url_for('user.login') }}">Login</a></button>
+            <button type="button" class="btn btn-success"><a href="{{ url_for('user.login') }}">Login</a></button>
             {% endif %}
         
             {% endblock %}
