@@ -1,14 +1,18 @@
+{% extends 'index.html' %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
+
+{%include 'index.html'%}
+
+
+{% block content %}
+
 <body>
-    <h1>Login</h1>
-    {% with messages = get_flashed_messages() %}
+    <article class="login-abts">
+    <form method="post" action="{{ url_for('user.login') }}" class="Login-deets">
+        <div class="mb-3">
+            <h1 class="login-header">Login</h1>
+        {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul>
                 {% for message in messages %}
@@ -16,19 +20,20 @@
                 {% endfor %}
             </ul>
         {% endif %}
-    {% endwith %}
-
-    <form method="post" action="{{ url_for('user.login') }}">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-
-        <button type="submit">Login</button>
-    </form>
-
+        {% endwith %}
+          <label for="username" class="form-label">Username: </label>
+          <input type="text" class="form-control" id="username" name="username" required>
+          
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+      
     <p>Don't have an account? <a href="{{ url_for('user.register') }}">Register New User</a></p>
     <p>Forgot your password? <a href="{{ url_for('user.forgot_password') }}">Reset Password</a></p>
+</article>
 </body>
+{%endblock%}
 </html>

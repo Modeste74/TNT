@@ -18,19 +18,19 @@ class Users(UserMixin, BaseModel, Base):
     user_type = Column(Enum('tutor', 'learner'), nullable=False)
 
     def __init__(self, *args, **kwargs):
-    	"""initializes user"""
-    	super().__init__(*args, **kwargs)
-    	if 'password' in kwargs:
-    	    self.set_password(kwargs['password'])
+        """initializes user"""
+        super().__init__(*args, **kwargs)
+        if 'password' in kwargs:
+            self.set_password(kwargs['password'])
 
     def set_password(self, password):
-    	"""sets the password to hash"""
-    	hashed_password = generate_password_hash(password)
-    	self.password = hashed_password
+        """sets the password to hash"""
+        hashed_password = generate_password_hash(password)
+        self.password = hashed_password
 
     def check_password(self, password):
-    	"""Checkes the password"""
-    	return check_password_hash(self.password, password)
+        """Checkes the password"""
+        return check_password_hash(self.password, password)
     
     sent_messages = relationship("Message", foreign_keys=[Message.sender_id], back_populates="sender")
     received_messages = relationship("Message", foreign_keys=[Message.receiver_id], back_populates="receiver")

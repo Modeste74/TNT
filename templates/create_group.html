@@ -1,13 +1,14 @@
+{% extends 'index.html' %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Group</title>
-</head>
+    {%include 'index.html'%}
+{% block content %}
+
 <body>
-    <h1>Create Group</h1>
+    <article class="login-abts">
+    <form method="POST" action="{{ url_for('group.create_group', hub_id=hub.id) }}" class="Login-deets">
+<div class="mb-3">
+    <h1 class="login-header">Create Group</h1>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul>
@@ -17,12 +18,13 @@
             </ul>
         {% endif %}
     {% endwith %}
-    
-    <form method="POST" action="{{ url_for('group.create_group', hub_id=hub.id) }}">
-        <label for="group_name">Group Name:</label>
-        <input type="text" name="group_name" required><br>
-        <button type="submit">Create Group</button>
+<div class="mb-3">
+            <label for="group_name" class="form-label">Group Name:</label>
+        <input type="text" class="form-control" name="group_name" required><br>
+        <button type="submit" class="btn btn-light">Create Group</button>
+</div>
     </form>
-    <p><a href="{{ url_for('hub.hub_display', hub_id=hub.id) }}">Return to Hub</a></p>
+    <button class="btn btn-light"><a href="{{ url_for('hub.hub_display', hub_id=hub.id) }}">Return to Hub</a></button>
 </body>
+{%endblock%}
 </html>

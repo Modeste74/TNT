@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """defines endpoints for group creation"""
 from . import group_bp
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, jsonify
 from flask import flash, url_for
 from flask_login import current_user
 from models import storage

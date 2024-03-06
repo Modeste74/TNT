@@ -1,12 +1,16 @@
+{% extends 'index.html' %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
-</head>
+
+{%include 'index.html'%}
+
+
+{% block content %}
 <body>
-    <h2>Registration</h2>
+    <article class="login-abts">
+    <form method="POST" action="{{ url_for('user.register') }}" class="Login-deets">
+        <div class="mb-3">
+    <h2 class="login-header">Registration</h2>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul>
@@ -16,20 +20,22 @@
             </ul>
         {% endif %}
     {% endwith %}
-    <form method="POST" action="{{ url_for('user.register') }}">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required>
-
-        <label for="password">Password:</label>
-        <input type="password" name="password" required>
-
+        <label for="username" class="form-label">Username:</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+        <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password:</label>
+        <input type="password" class="form-control" id="password" name="password"required>
+    </div>
+    <div class="mb-3">
         <label for="user_type">User Type:</label>
-        <select name="user_type" required>
+       <select name="user_type" class="form-select form-select-sm" aria-label="Small select example" required>
             <option value="tutor">Tutor</option>
             <option value="learner">Learner</option>
         </select>
-
-        <button type="submit">Register</button>
+    </div>
+        <button type="submit" class="btn btn-success" id="register">Register</button>
     </form>
+</article>
 </body>
+{%endblock%}
 </html>

@@ -1,0 +1,62 @@
+/* login styling, registration, forgot password */
+.Login-deets
+{
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-abts
+{
+    background-color: #a9ba9d;
+    min-width: 100%;
+    min-height: 100vh;
+}
+.login-header
+{
+    text-align: center;
+    color:#138808;
+    text-transform: uppercase;
+    font-size: 23px;
+    font-weight: bolder;
+}
+.btn a
+{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight:bold;
+    color:#111;
+}
+label
+{
+    font-weight: 700;
+    color:#306030;
+    font-size: 20px;
+}
+#register
+{
+    color: white;
+    text-transform: uppercase;
+}
+ul li
+{
+list-style-type: none;
+color: #306030;
+font-weight: 700;
+}
+/* Hub display page styling */
+.JustHubs
+{
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #a9a9a9;
+    min-width: 100%;
+    min-height: 100vh;
+}
+.learners
+{
+    margin-bottom: 10px;
+}
