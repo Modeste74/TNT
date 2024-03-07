@@ -27,7 +27,7 @@
                 <a class="nav-link active" aria-current="page" href="{{ url_for('user.home') }}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="{{url_for('user.about')}}">About</a>
               </li>
               <form class="container-fluid justify-content-start">
             {% if current_user.is_authenticated %}
