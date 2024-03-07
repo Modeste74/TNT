@@ -60,8 +60,9 @@
 	{% endif %}
 </div>
 <div class="Messages-div">
-	<p><a href="{{ url_for('message.user_chat', receiver_id=current_user.id) }}">Direct Messages</a></p>
-	<p><a href="{{ url_for('message.send_message', sender_id=current_user.id) }}">Send Message</a></p>
+	<button type="button" class="btn btn-light">
+		<a href="{{ url_for('message.send_and_view_chat', receiver_id=current_user.id) }}">Direct Messages</a>
+	</button>
 	<button type="button" class="btn btn-light"><a href="{{ url_for('user.logout') }}">Logout</a></button>
 </div>
 
