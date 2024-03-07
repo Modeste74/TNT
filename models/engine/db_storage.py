@@ -16,7 +16,7 @@ from os import getenv
 classes = {"Users": Users, "Message": Message, "Hub": Hub,
         "HubLearners": HubLearners, "Resource": Resource,
         "Chat": Chat, "Group": Group, "GroupMember": GroupMember,
-        "GroupMessage": GroupMessage}
+        "GroupMessage": GroupMessage, "BaseModel": BaseModel}
 
 
 class DBStorage:
