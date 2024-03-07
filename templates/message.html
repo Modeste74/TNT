@@ -1,22 +1,28 @@
+{% extends 'index.html' %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messaging App</title>
-</head>
+	{%include 'index.html'%}
+
+	{% block content %}
+
 <body>
-    <h1>Messaging App</h1>
+    <article class="login-abts">
 
     <!-- Form for sending messages -->
-    <form id="messageForm">
-        <label for="recipient">Recipient:</label>
-        <input type="text" id="recipient" name="recipient" required>
+    <form id="messageForm" class="Login-deets">
+        <div class="mb-3">
+    <h1 class="login-header">Messaging App</h1>
+    <div class="mb-3"></div>
+        <label for="recipient"  class="form-label">Recipient:</label>
+        <input type="text" class="form-control" id="recipient" name="recipient" required>
         <br>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
+        <label for="message" class="form-label">Message:</label>
+        <textarea id="message" class="form-control" id="exampleFormControlTextarea1" rows="3" name="message" required></textarea>
         <br>
-        <button type="button" onclick="sendMessage('{{ sender_id }}')">Send Message</button>
+        <button type="button"  onclick="sendMessage('{{ sender_id }}')" class="btn btn-success">Send Message</button>
+    </div>
+
     </form>
 
     <!-- Display area for received messages -->
@@ -45,5 +51,7 @@
             });
         }
     </script>
+</article>
 </body>
+{%endblock%}
 </html>
