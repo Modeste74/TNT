@@ -29,6 +29,11 @@ def index():
     return render_template('index.html')
 
 
+@user_bp.route('/about')
+def about():
+    return render_template('about.html')
+
+
 @user_bp.route('/home')
 @login_required
 def home():
