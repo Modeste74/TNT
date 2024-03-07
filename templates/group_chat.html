@@ -2,13 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
 	{%include 'index.html'%}
-
-	{% block content %}
+  {% block content %}
+<head>
+    <!-- Add your head content here -->
+</head>
 <body>
     <article class="login-abts">
         <form action="{{ url_for('group.group_chat', group_id=group.id, sender_id=sender.id) }}" method="POST"class="Login-deets">
             <div class="mb-3">
     <h1 class="login-header">Group Chat - {{ group.name }}</h1>
+               {% if current_user.user_tpe == 'tutor' %}
+    	<p><a href="{{ url_for('group.add_participant_to_group', group_id=group.id, hub_id=group.hub_id) }}">Add Participaant</a></p>
+    {% endif %}
     <ul>
         {% for message in group_messages %}
             <li>{{ message.sender.username }}: {{ message.content }}</li>
@@ -21,9 +26,11 @@
         <br>
         <button type="submit" class="btn btn-success">Send Message</button>
     </form>
+    
+    <p><a href="{{ url_for('hub.hub_display', hub_id=group.hub_id) }}">Back to Hub</a></p>
 
     <!-- Add other elements as needed -->
-</article>
+          </article>
 </body>
 {%endblock%}
 </html>
