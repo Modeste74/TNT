@@ -8,11 +8,18 @@
 
 <body>
     <article class="login-abts">
-
+    
     <!-- Form for sending messages -->
     <form id="messageForm" class="Login-deets">
         <div class="mb-3">
     <h1 class="login-header">Messaging App</h1>
+    <ul>
+        {% for message in messages %}
+            <li>
+                <strong>{{ message.sender.username }}:</strong> {{ message.message }}
+            </li>
+        {% endfor %}
+    </ul>
     <div class="mb-3"></div>
         <label for="recipient"  class="form-label">Recipient:</label>
         <input type="text" class="form-control" id="recipient" name="recipient" required>
@@ -20,7 +27,7 @@
         <label for="message" class="form-label">Message:</label>
         <textarea id="message" class="form-control" id="exampleFormControlTextarea1" rows="3" name="message" required></textarea>
         <br>
-        <button type="button"  onclick="sendMessage('{{ sender_id }}')" class="btn btn-success">Send Message</button>
+        <button type="button"  onclick="sendMessage('{{ recipient_id }}')" class="btn btn-success">Send Message</button>
     </div>
 
     </form>
@@ -29,10 +36,10 @@
     <div id="messageDisplay"></div>
 
     <script>
-        function sendMessage(senderId) {
+        function sendMessage(recipientId) {
             // Your AJAX code to send a message and update the display goes here
             // Example using fetch:
-            fetch(`/send_message/${senderId}`, {
+            fetch(`/send_and_view_chat/${recipientId}`, {
                 method: 'POST',
                 body: new FormData(document.getElementById('messageForm')),
             })
