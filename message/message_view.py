@@ -54,8 +54,9 @@ def send_and_view_chat(receiver_id):
                     )
                 ]
                 direct_messages.extend(messages_between_users)
+            sorted_dms = sorted(direct_messages, key=lambda x: x.created_at)
 
-            return render_template('message.html', messages=direct_messages,
+            return render_template('message.html', messages=sorted_dms,
                                    recipient_id=receiver_id, current_user=current_user)
         else:
             return render_template('message.html', messages=[],

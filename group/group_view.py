@@ -92,9 +92,10 @@ def group_chat(group_id, sender_id):
     group_messages = [
             message for message in messages
             if message.group_id == group_id]
+    sorted_messages = sorted(group_messages, key=lambda x: x.created_at)
 
     return render_template('group_chat.html', group=group,
-    	sender=sender, group_messages=group_messages)
+    	sender=sender, group_messages=sorted_messages)
 
 
 @group_bp.route('/delete_group/<group_id>/<hub_id>',
