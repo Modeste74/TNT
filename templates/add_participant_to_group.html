@@ -1,13 +1,13 @@
+{% extends 'index.html' %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Participant to Group</title>
-</head>
+    {%include 'index.html'%}
+    {% block content %}
 <body>
-    <h1>Add Participant to Group</h1>
+    <article class="login-abts">
+    <form method="POST" action="{{ url_for('group.add_participant_to_group', group_id=group_id, hub_id=hub_id) }}" class="Login-deets">
+        <div class="mb-3">
+    <h1 class="login-header">Add Participant to Group</h1>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul>
@@ -17,12 +17,14 @@
             </ul>
         {% endif %}
     {% endwith %}
-    
-    <form method="POST" action="{{ url_for('group.add_participant_to_group', group_id=group_id, hub_id=hub_id) }}">
-        <label for="username">Learner Name:</label>
-        <input type="text" name="username" required><br>
-        <button type="submit">Add Participant</button>
+    <div class="mb-3">
+        <label for="username"  class="form-label">Learner Name:</label>
+        <input type="text" class="form-control" name="username" required><br>
+        <button class="btn btn-success" type="submit">Add Participant</button>
+        </div>
     </form>
-    <p><a href="{{ url_for('group.group_chat', group_id=group_id, sender_id=current_user.id) }}">Back to group</a></p>
+    <button class="btn btn-light"><a href="{{ url_for('group.group_chat', group_id=group_id, sender_id=current_user.id) }}">Back to group</a></button>
+</article>
 </body>
+{%endblock%}
 </html>
