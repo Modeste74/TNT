@@ -19,10 +19,11 @@
           {% for group in groups %}
             {% if group.hub_id == hub.id %}
               <li>
-                <a href="{{ url_for('group.group_chat', group_id=group.id, sender_id=current_user.id) }}">{{ group.name }}</a>
+                <button class="btn btn-light"><a href="{{ url_for('group.group_chat', group_id=group.id, sender_id=current_user.id) }}">{{ group.name }}</a></button>
               </li>
+              <br>
               <li>
-                <a href="{{ url_for('group.delete_group', group_id=group.id, hub_id=hub.id) }}">Delete {{ group.name }}</a>
+                <button class="btn btn-warning"><a href="{{ url_for('group.delete_group', group_id=group.id, hub_id=hub.id) }}">Delete {{ group.name }}</a></button>
               </li>
             {% endif %}
           {% endfor %}
@@ -30,7 +31,7 @@
           {% for group in groups %}
             {% if group.hub_id == hub.id %}
                 <li>
-                    <a href="{{ url_for('group.group_chat', group_id=group.id, sender_id=current_user.id) }}">{{ group.name }}</a>
+                  <a href="{{ url_for('group.group_chat', group_id=group.id, sender_id=current_user.id) }}">{{ group.name }}</a>
                 </li>
             {% endif %}
           {% endfor %}

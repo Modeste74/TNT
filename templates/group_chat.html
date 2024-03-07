@@ -1,11 +1,14 @@
+{% extends 'index.html' %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Add your head content here -->
-</head>
-<body>
-    <h1>Group Chat - {{ group.name }}</h1>
+	{%include 'index.html'%}
 
+	{% block content %}
+<body>
+    <article class="login-abts">
+        <form action="{{ url_for('group.group_chat', group_id=group.id, sender_id=sender.id) }}" method="POST"class="Login-deets">
+            <div class="mb-3">
+    <h1 class="login-header">Group Chat - {{ group.name }}</h1>
     <ul>
         {% for message in group_messages %}
             <li>{{ message.sender.username }}: {{ message.content }}</li>
@@ -13,14 +16,14 @@
     </ul>
 
     <!-- Form for sending messages -->
-    <form action="{{ url_for('group.group_chat', group_id=group.id, sender_id=sender.id) }}" method="POST">
-        <label for="content">Message:</label>
-        <textarea name="content" id="content" required></textarea>
+        <label for="content" class="form-label">Message:</label>
+        <textarea name="content" id="content" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
         <br>
-        <button type="submit">Send Message</button>
+        <button type="submit" class="btn btn-success">Send Message</button>
     </form>
 
     <!-- Add other elements as needed -->
-
+</article>
 </body>
+{%endblock%}
 </html>
