@@ -60,3 +60,21 @@ font-weight: 700;
 {
     margin-bottom: 10px;
 }
+.TheHubs
+{
+    padding: 20px;
+    min-width: 100%;
+    background-color: #f5f5f5;
+    min-height:100vh;
+}
+.hubbing
+{
+    display: grid;
+    grid-template-columns: 500px 2fr;
+    text-align: center;
+    margin-top: 30px;
+}
+.card-body ul li
+{
+    list-style-type: none;
+}

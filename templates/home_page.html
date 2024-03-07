@@ -5,10 +5,37 @@
 	{%include 'index.html'%}
 
 	{% block content %}
-<body class="TheHubs">
-	<h1>Welcome {{ current_user.username }}</h1>
-	<h2>Your Hubs</h2>
-	<ul>
+<body>
+	<article class="TheHubs">
+	<h1 class="login-header">Welcome {{ current_user.username }}</h1>
+	<div class="hubbing">
+	<div class="hubs-part">
+		<p class="d-inline-flex gap-1">
+			<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+				Your Hubs
+			</a>
+		  </p>
+		  <div class="collapse" id="collapseExample">
+			<div class="card card-body">
+				<ul>
+					{% if current_user.user_type == 'tutor' %}
+					  {% for hub in hubs %}
+						{% if hub.tutor_id == current_user.id %}
+						  <li><a href="{{ url_for('hub.hub_display', hub_id=hub.id) }}">{{ hub.name }}</a></li>
+						{% endif %}
+					  {% endfor %}
+					{% elif current_user.user_type == 'learner' %}
+					  {% for hub_l in hubs_for_l %}
+						{% if hub_l.learner.username == current_user.username %}
+						  <li><a href="{{ url_for('hub.hub_display', hub_id=hub_l.hub.id) }}">{{ hub_l.hub.name }}</a></li>
+						{% endif %}
+					  {% endfor %}
+					{% endif %}
+				</ul>
+			</div>
+		  </div>
+	<!-- <h2>Your Hubs</h2> -->
+	<!-- <ul>
 		{% if current_user.user_type == 'tutor' %}
 		  {% for hub in hubs %}
 		    {% if hub.tutor_id == current_user.id %}
@@ -22,15 +49,20 @@
 		    {% endif %}
 		  {% endfor %}
 		{% endif %}
-	</ul>
+	</ul> -->
 	{% if current_user.user_type == 'tutor' %}
 	  <ul>
 		<li><a href="{{ url_for('hub.create_hub', tutor_id=current_user.id) }}">Create Hub</a></li>
 	  </ul>
 	{% endif %}
+</div>
+<div class="Messages-div">
 	<p><a href="{{ url_for('message.user_chat', receiver_id=current_user.id) }}">Direct Messages</a></p>
 	<p><a href="{{ url_for('message.send_message', sender_id=current_user.id) }}">Send Message</a></p>
 	<p><a href="{{ url_for('user.logout') }}">Logout</a></p>
+</div>
+
+</article>
 </body>
 {%endblock%}
 </html>
