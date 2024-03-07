@@ -86,3 +86,51 @@ font-weight: 700;
     color:#111;
     cursor: pointer;
 }
+/* Styling about page */
+.about-us
+{
+    min-height: 100vh;
+    min-width: 100%;
+    background-color: #1b1b1b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about-header
+{
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    color:#e3f988;
+    margin-bottom: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.abt-container
+{
+    min-width: 50vh;
+    min-height: 60vh;
+    background-color: rgba(1,1,1,0.8);
+    border-radius: 30px;
+    text-align: center;
+}
+.about-section h2
+{
+ color:#a9a9a9;
+ text-transform: uppercase;
+ font-family: monospace;
+}
+.about-section p
+{
+    text-align: center;
+    color:#f0ffff; 
+}
+.names li
+{
+    color:#e3f988 !important;
+    text-transform: uppercase;
+    font-size:15px;
+}
+.mail
+{
+    color:#e3f988;
+}
