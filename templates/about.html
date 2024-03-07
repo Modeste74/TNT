@@ -1,45 +1,50 @@
+{%extends 'index.html'%}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <!-- Add your additional head content here -->
-</head>
+    {%include 'index.html'%}
+
+    {% block content %}
 <body>
-    <header>
-        <h1>About Our Website</h1>
-    </header>
-    
-    <section>
+    <article class="about-us">
+    <div class="abt-container">
+        <h1 class="about-header">About Our Website</h1>
+    <section class="about-section">
         <h2>Introduction</h2>
         <p>Welcome to our website! We are excited to have you here and share more about the purpose of our platform.</p>
         <p>The website allows tutors and learners to have segregated environments for learning
             different things based on what the tutor is offering.</p>
     </section>
 
-    <section>
+    <section class="about-section">
         <h2>Creators</h2>
         <p>
-            Our website was created by a team of dedicated individuals who are passionate
-            about learning and wanted to create a site that would facilitate tutoring.
+            Our website was created by a team of dedicated individuals
+           who are passionate about learning and wanted to create a site
+          that would facilitate tutoring.
         </p>
-        <ul>
+        <ul class="names">
             <li>Ann Muchiri</li>
             <li>Modeste Ciira</li>
             <!-- Add more names as needed -->
         </ul>
     </section>
 
-    <section>
+    <section class="about-section">
         <h2>Contact Us</h2>
         <p>
-            If you have any questions or feedback, feel free to reach out to us at ciiramodeste23@gmail or muchirinjeri3210@gmail.com.
+            If you have any questions or feedback, feel free to reach out to us at: 
+            <br>
+             <a class="mail" href="mailto: ">ciiramodeste23@gmail</a>
+             <br>
+             <a class="mail" href="mailto:"> muchirinjeri3210@gmail.com</a>
         </p>
     </section>
+</div>
+</article>
 
-    <footer>
+    <!-- <footer>
         <p>&copy; 2024 Our Website. All rights reserved.</p>
-    </footer>
+    </footer> -->
 </body>
+{%endblock%}
 </html>
