@@ -30,11 +30,11 @@
 <p>Similar to the hub creation the tutor has the ability to create groups inside the hubs and add participants to the different groups.</p>
 <br>
 <img src="Static/images/TNT_create_group.png" alt="Image Description"></li>
-<img src="Static/images/TNT_add_grou_add_learners.png" alt="Image Description"></li>
+<img src="Static/images/TNT_grou_add_learners.png" alt="Image Description"></li>
 <li>Tutor can send Resources to a hub:
 <p>The tutor is the only user allowed to send the messages on the resouce chat. The learner can only view.</p>
 <br>
-<img src="Static/images/TNT_hub_resouce_tutor.png" alt="Image Description"></li>
+<img src="Static/images/TNT_hub_resource_tutor.png" alt="Image Description"></li>
 <img src="Static/images/TNT_learners_resource.png" alt="Image Description"></li>
 <li>Tutor and learner chat room:
 <p>Both the tutor and the learner have the ability to access the hub chat room. From there they can send and view messages from other hub occupants.</p>
