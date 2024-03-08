@@ -10,7 +10,7 @@
     <h1 class="login-header">{{ hub.name }}</h1>
     <!-- <p><a href="{{ url_for('user.home') }}">Home</a></p> -->
     {% if current_user.user_type == 'tutor' %}
-      <button class="btn btn-light learners"><a href="{{ url_for('hub.add_learner', hub_id=hub.id) }}">Add learners</a></button class=""btn btn-light">
+      <button class="btn btn-light learners"><a href="{{ url_for('hub.add_learner', hub_id=hub.id) }}">Add learners</a></button class="btn btn-light">
       <button class="btn btn-light learners"><a href="{{ url_for('group.create_group', hub_id=hub.id) }}">Create Group</a></button>
     {% endif %}
     <h3 class="login-header">Hub Groups</h3>
@@ -33,7 +33,7 @@
 	    	        {% for grp_m in group.members %}
 		               {% if grp_m.user_id == current_user.id %}
                         <li>
-                            <a href="{{ url_for('group.group_chat', group_id=group.id, sender_id=current_user.id) }}">{{ group.name }}</a>
+                            <button class="btn btn-light"><a href="{{ url_for('group.group_chat', group_id=group.id, sender_id=current_user.id) }}">{{ group.name }}</a></button>
                        </li>
 		               {% endif %}
 		            {% endfor %}
